@@ -1,5 +1,5 @@
  //export const host ="http://localhost:9000"
- export const host="https://gloomchatbackend.herokuapp.com"
+ export const host=process.env.HOST
 
 export const RegisterRoute = `${host}/api/auth/register`
 export const LoginRoute =`${host}/api/auth/login`
