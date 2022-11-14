@@ -3,7 +3,7 @@ import { Avatar, Grid } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetUsersList, host } from '../utils/apiRoutes'
+import { GetUsersList, host, REACT_APP_LOCALHOST_KEY } from '../utils/apiRoutes'
 import ChatContainer from './ChatContainer'
 import Contacts from './Contacts'
 
@@ -35,11 +35,11 @@ export default function ChatPage(props) {
 
     useEffect(() => {
 
-        if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+        if (!localStorage.getItem(REACT_APP_LOCALHOST_KEY)) {
             navigate('/login')
         }
         else {
-            setcurrentUser(JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)))
+            setcurrentUser(JSON.parse(localStorage.getItem(REACT_APP_LOCALHOST_KEY)))
         }
 
 

@@ -10,7 +10,7 @@ import { Avatar, Grid, Typography } from '@mui/material';
 import { v4 as uuidv4 } from "uuid";
 import ChatInput from './ChatInput';
 import axios from 'axios';
-import { recieveMessageRoute, sendMessageRoute } from '../utils/apiRoutes';
+import { REACT_APP_LOCALHOST_KEY, recieveMessageRoute, sendMessageRoute } from '../utils/apiRoutes';
 import styled from "styled-components";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -26,7 +26,7 @@ export default function ChatContainer({ currentChat, socket,goback }) {
     useEffect(() => {
         async function fetchmessage() {
             const data = await JSON.parse(
-                localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+                localStorage.getItem(REACT_APP_LOCALHOST_KEY)
             );
             const response = await axios.post(recieveMessageRoute, {
                 from: data._id,
@@ -44,7 +44,7 @@ export default function ChatContainer({ currentChat, socket,goback }) {
 
 
         const data = await JSON.parse(
-            localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+            localStorage.getItem(REACT_APP_LOCALHOST_KEY)
         );
         let msgs = [...messages];
         // for (var i = 0; i < files.length; i++) {
@@ -70,7 +70,7 @@ export default function ChatContainer({ currentChat, socket,goback }) {
 
     const handleSendMsg = async (msg) => {
         const data = await JSON.parse(
-            localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+            localStorage.getItem(REACT_APP_LOCALHOST_KEY)
         );
 
         socket.current.emit("send-msg", {

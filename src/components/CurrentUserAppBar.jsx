@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import axios from 'axios';
-import { logoutRoute } from '../utils/apiRoutes';
+import { logoutRoute, REACT_APP_LOCALHOST_KEY } from '../utils/apiRoutes';
 
 export default function CurrentUserAppBar(props) {
     const navigate = useNavigate()
     const [loggedinUser,setLoggedinUser]=useState(null)
 
     useEffect(() => {
-        if(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY))
+        if(localStorage.getItem(REACT_APP_LOCALHOST_KEY))
         {
         console.log(loggedinUser)
-           setLoggedinUser(JSON.parse(localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)))
+           setLoggedinUser(JSON.parse(localStorage.getItem(REACT_APP_LOCALHOST_KEY)))
         }
         else{
             navigate('/')
@@ -24,7 +24,7 @@ export default function CurrentUserAppBar(props) {
    
   const handleClick = async () => {
     const id = await JSON.parse(
-      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+      localStorage.getItem(REACT_APP_LOCALHOST_KEY)
     )._id;
     const data = await axios.get(`${logoutRoute}/${id}`);
     if (data.status === 200) {

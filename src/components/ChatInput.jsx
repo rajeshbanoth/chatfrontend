@@ -6,6 +6,7 @@ import { BsEmojiSmileFill } from "react-icons/bs";
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import ReactImageFileToBase64 from "react-file-image-to-base64";
+import { REACT_APP_LOCALHOST_KEY } from '../utils/apiRoutes';
 
 export default function ChatInput({ currentChat, socket, handleSendmsgProp, handleSendImage }) {
 
@@ -22,7 +23,7 @@ export default function ChatInput({ currentChat, socket, handleSendmsgProp, hand
         setmsg(e.target.value)
 
         const data = await JSON.parse(
-            localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+            localStorage.getItem(REACT_APP_LOCALHOST_KEY)
         );
         socket.current.emit("typing_status", {
             to: currentChat._id,
@@ -63,7 +64,7 @@ export default function ChatInput({ currentChat, socket, handleSendmsgProp, hand
     const handleOnBlurEvent = async () => {
 
         const data = await JSON.parse(
-            localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+            localStorage.getItem(REACT_APP_LOCALHOST_KEY)
         );
         socket.current.emit("typing_status", {
             to: currentChat._id,

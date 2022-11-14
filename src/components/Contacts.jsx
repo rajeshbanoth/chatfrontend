@@ -7,6 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { ListItemButton } from '@mui/material';
+import { REACT_APP_LOCALHOST_KEY } from '../utils/apiRoutes';
 
 export default function  Contacts({contacts,changeChat,contactpageopen}) {
 
@@ -21,7 +22,7 @@ export default function  Contacts({contacts,changeChat,contactpageopen}) {
 async  function fetchdata()
 {
     const data = await JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        localStorage.getItem(REACT_APP_LOCALHOST_KEY)
       );
       console.log(data)
       setCurrentUserName(data.username);

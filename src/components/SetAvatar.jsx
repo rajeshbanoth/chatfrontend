@@ -5,7 +5,7 @@ import styled from "styled-components";
 import loader from "../assets/loader.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { SetAvatarRoute } from '../utils/apiRoutes';
+import { REACT_APP_LOCALHOST_KEY, SetAvatarRoute } from '../utils/apiRoutes';
 import { useNavigate } from 'react-router-dom';
 
 export default function SetAvatar(props) {
@@ -30,7 +30,7 @@ const setProfilePicture = async () => {
       toast.error("Please select an avatar", toastOptions);
     } else {
       const user = await JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        localStorage.getItem(REACT_APP_LOCALHOST_KEY)
       );
 
       const { data } = await axios.post(`${SetAvatarRoute}/${user._id}`, {
@@ -41,7 +41,7 @@ const setProfilePicture = async () => {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
         localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
+          REACT_APP_LOCALHOST_KEY,
           JSON.stringify(user)
         );
         navigate("/");

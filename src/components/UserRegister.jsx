@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { RegisterRoute } from '../utils/apiRoutes';
+import { REACT_APP_LOCALHOST_KEY, RegisterRoute } from '../utils/apiRoutes';
 import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from "react-toastify";
@@ -72,7 +72,7 @@ export default function UserRegister() {
 }
 
 if(result.data.status===true){
-    localStorage.setItem(process.env.REACT_APP_LOCALHOST_KEY,JSON.stringify(result.data.user))
+    localStorage.setItem(REACT_APP_LOCALHOST_KEY,JSON.stringify(result.data.user))
     navigate('/')
 
 }
